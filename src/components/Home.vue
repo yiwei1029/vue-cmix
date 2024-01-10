@@ -5,15 +5,17 @@
                 <img class="homelogo" src="../assets/homelogo.png" alt="">
                 <span>Cmixing User Center</span>
             </div>
-            <el-button type="primary" @click="backToLogin" class="btns">退出</el-button>
+            <el-button type="primary" @click="backToLogin" class="btns">Exit</el-button>
         </el-header>
         <el-container>
             <el-aside class="el-aside" :width="toggleCollapse ? '50px' : '200px'">
-                <div class="toggle-collapse" @click="toggleCollapseClick">|||</div>
+                <!-- <div class="toggle-collapse" @click="toggleCollapseClick">|||</div> -->
                 <el-menu class="el-menu" :unique-opened="true" :collapse="toggleCollapse" router
                     :default-active="activePath" v-for="menu in MenuList">
-                    <el-menu-item :index="'/' + menu.name">{{ menu.name }}</el-menu-item>
-
+                    <el-menu-item :index="'/' + menu.name" @click="saveActive('/' + menu.name)">
+                        <span :class="IconObject[menu.id]" style="margin-right: 5px;"></span>
+                        {{ menu.name }}
+                    </el-menu-item>
                 </el-menu>
             </el-aside>
             <!-- 主体区域 -->
@@ -24,7 +26,6 @@
     </el-container>
 </template>
 <script>
-import router from '@/router';
 
 export default {
     created() {
@@ -39,12 +40,12 @@ export default {
             ],
             toggleCollapse: false,
             IconObject: {
-                // '1': 'iconfont icon-Browser',
-                // '2': 'iconfont icon-Cart',
-                // '3': 'iconfont icon-Dashboards'
-                '1': '#icon-Browser',
-                '2': '#icon-Cart',
-                '3': '#icon-Dashboards'
+                '1': 'iconfont icon-query',
+                '2': 'iconfont icon-qsy-shuzhilifang',
+                '3': 'iconfont icon-chaosongren'
+                // '1': '#icon-Browser',
+                // '2': '#icon-Cart',
+                // '3': '#icon-Dashboards'
             },
             activePath: ''
         };
@@ -62,7 +63,7 @@ export default {
             this.activePath = activePath
         }
     },
-    components: { router }
+    components: {}
 }
 </script>
 <style lang="less" scoped>
@@ -90,7 +91,7 @@ export default {
 
 .el-menu {
     /* background-color: #333744; */
-    color: #fff;
+    color: #ffffff8a;
 }
 
 .homelogo {

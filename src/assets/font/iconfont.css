@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont"; /* Project id  */
-  src: url('iconfont.ttf?t=1704609538231') format('truetype');
+  src: url('iconfont.ttf?t=1704867083792') format('truetype');
 }
 
 .iconfont {
@@ -21,5 +21,17 @@
 
 .icon-Cart:before {
   content: "\eaac";
+}
+
+.icon-query:before {
+  content: "\e609";
+}
+
+.icon-qsy-shuzhilifang:before {
+  content: "\e747";
+}
+
+.icon-chaosongren:before {
+  content: "\e619";
 }
 
