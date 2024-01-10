@@ -11,6 +11,7 @@ import { Row,Col } from 'element-ui'
 import { Table,TableColumn } from 'element-ui'
 import { InputNumber } from 'element-ui'
 import { Statistic } from 'element-ui'
+import { Select ,Option} from 'element-ui'
 Vue.prototype.$message=Message
 Vue.use(Button)
 Vue.use(Form)
@@ -33,3 +34,5 @@ Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(InputNumber)
 Vue.use(Statistic)
+Vue.use(Select)
+Vue.use(Option)

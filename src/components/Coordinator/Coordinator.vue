@@ -3,27 +3,43 @@
         <!-- budget and privacy -->
         <el-row :gutter="10">
             <el-col :span="8"><el-card class="box-card">
-                <div style="width:300px; height:150px"  id="chart1"></div>
-            </el-card></el-col>
+                    <div style="width:300px; height:150px" id="chart1"></div>
+                </el-card></el-col>
             <el-col :span="8"><el-card class="box-card" style="height:190px">
-                <div>Balance:{{ Balance }}</div>
-                <div>Budget: {{ Budget }}</div>
-                <div><el-input style="width:50% ;margin-top:10px"></el-input> <el-button  style="width:40%" type="primary">Add</el-button></div>
-                <div><el-input style="width:50% ;margin-top:10px"></el-input> <el-button style="width:40%" type="danger">Remove</el-button></div>
-            </el-card></el-col>
+                    <div>Balance:{{ Balance }}</div>
+                    <div>Budget: {{ Budget }}</div>
+                    <div><el-input style="width:50% ;margin-top:10px"></el-input> <el-button style="width:40%"
+                            type="primary">Add</el-button></div>
+                    <div><el-input style="width:50% ;margin-top:10px"></el-input> <el-button style="width:40%"
+                            type="danger">Remove</el-button></div>
+                </el-card></el-col>
             <el-col :span="8"><el-card class="box-card">
-                <div style="width:400px; height:150px"  id="chart2"></div>
-            </el-card></el-col>
+                    <div style="width:400px; height:150px" id="chart2"></div>
+                </el-card></el-col>
         </el-row>
         <!-- algo and commision rate -->
         <el-row :gutter="10">
-            <el-col :span="24"><el-card class="box-card"></el-card></el-col>
-        </el-row><el-row :gutter="10">
-            <el-col :span="24"><el-card class="box-card"></el-card></el-col>
+            <el-col :span="24"><el-card class="box-card">
+                    <span style="margin-right: 10px;">Existing Coordination Algorithm</span>
+                    <el-select v-model="AlgoCurrentPicking" placeholder="select" style="margin-right: 10px;">
+                        <el-option v-for="item in ExistingCoordinationAlgorithm" :key="item" :value="item">
+                        </el-option>
+                    </el-select>
+                    <span style="margin-right: 10px;">Existing Commission Rate</span>
+                    <el-select v-model="RateCurrentPicking" placeholder="select">
+                        <el-option v-for="item in ExistingCommissionRate" :key="item" :value="item">
+                        </el-option>
+                    </el-select>
+                </el-card></el-col>
         </el-row>
+
+
         <!-- chart -->
-        </el-row><el-row :gutter="10">
-            <el-col :span="24"><el-card class="box-card"></el-card></el-col>
+        <el-row :gutter="10">
+            <el-col :span="24"><el-card class="box-card">
+                    <div style="width: 1000px; height: 400px;" id="chart3">
+                    </div>
+                </el-card></el-col>
         </el-row>
         <!-- Stats -->
         <el-card>
@@ -48,8 +64,8 @@ export default {
     name: 'Coordinator',
     data() {
         return {
-            Balance:'5.3710',
-            Budget:'2.0000',
+            Balance: '5.3710',
+            Budget: '2.0000',
             Stats: [
                 { title: 'Today Active User', value: 1572 },
                 { title: 'Today Rebate Sum', value: 37362 },
@@ -57,60 +73,123 @@ export default {
                 { title: 'Today Group Plans', value: 732 }
             ],
             BudgetPct:
-            [{name:'Available',value:77},
-            {name:'Occupied',value:23}],
-            PrivacyPct:[
-                {name:'c<0.02',value:13},
-                {name:'c>0.3',value:48},
-                {name:'0.02<c<0.1',value:29},
-                {name:'0.1<c<0.3',value:10}
-            ]
+                [{ name: 'Available', value: 77 },
+                { name: 'Occupied', value: 23 }],
+            PrivacyPct: [
+                { name: 'c<0.02', value: 13 },
+                { name: 'c>0.3', value: 48 },
+                { name: '0.02<c<0.1', value: 29 },
+                { name: '0.1<c<0.3', value: 10 }
+            ],
+            ExistingCoordinationAlgorithm: [
+                'Boggart',
+                'Algo2',
+                'Algo3'
+            ],
+            AlgoCurrentPicking: 'Boggart',
+            ExistingCommissionRate: ['0.01%', '0.1%', '1%'],
+            RateCurrentPicking: '0.01%',
+            IndicatorByTime: {
+                Request: [{ time: '10:50', value: 20 }, { time: '10:51', value: 40 }, { time: '10:52', value: 60 }],
+                Transaction: [{ time: '10:50', value: 10 }, { time: '10:51', value: 15 }, { time: '10:52', value: 20 }],
+                Revenue: [{ time: '10:50', value: 10 }, { time: '10:51', value: 0 }, { time: '10:52', value: 30 }]
+
+            }
+
 
         }
     },
     components: {},
     watch: {},
     mounted() {
-        
 
-        this.createPieChart('chart1',this.BudgetPct)
-        this.createPieChart('chart2',this.PrivacyPct)
-     },
+
+        this.createPieChart('chart1', this.BudgetPct)
+        this.createPieChart('chart2', this.PrivacyPct)
+        this.createMultiChart('chart3', this.IndicatorByTime, 'time', 'value', ['Request', 'Transaction', 'Revenue'])
+    },
     methods: {
-        createPieChart(divName,dataArray){
+        createPieChart(divName, dataArray) {
             var chart = echarts.init(document.getElementById(divName));
             var option = {
-            tooltip: {
-                trigger: 'item',
-                formatter: "{a} <br/>{b}: {c} ({d}%)"
-            },
-            legend: {
-                orient: 'vertical',
-                x: 'left',
-                data: dataArray.map(item=>item.name)
-            },
-            series: [
-                {
-                    name: 'Source',
-                    type: 'pie',
-                    avoidLabelOverlap: false,
-                    label: {
-                        normal: {
-                            show: true,
-                            position: 'inside',
-                            formatter: '{d}%',
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b}: {c} ({d}%)"
+                },
+                legend: {
+                    orient: 'vertical',
+                    x: 'left',
+                    left: 0,
+                    data: dataArray.map(item => item.name)
+                },
+                series: [
+                    {
+                        name: 'Source',
+                        type: 'pie',
+                        avoidLabelOverlap: false,
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'inside',
+                                formatter: '{d}%',
+                            },
                         },
+                        data: [
+                            ...dataArray
+                        ]
+                    }
+                ]
+            }
+            chart.setOption(option)
+        },
+        createMultiChart(divName, dataArray, xaxis, yaxis, nameArray) {
+            var chart = echarts.init(document.getElementById(divName))
+            var option = {
+                tooltip: {
+                    formatter: '{a}:{c}  @ {b}'
+                },
+                xAxis: {
+                    data: dataArray[nameArray[0]].map(item => item[xaxis])
+                },
+                legend: {
+                    orient: 'horizontal',
+                    x: 'left',
+                    data: nameArray
+                },
+                yAxis: [{ name: nameArray[0], position: 'left' }, { name: nameArray[2], position: 'right' }],
+                series: [
+                    {
+                        data: dataArray[nameArray[0]].map(item => item[yaxis]),
+                        type: 'bar',
+                        stack: 'y',
+                        name: nameArray[0],
+                        // formatter: '{ d }'
                     },
-                    data: [
-                        ...dataArray
-                    ]
-                }
-            ]
-        }
+                    {
+                        data: dataArray[nameArray[1]].map(item => item[yaxis]),
+                        type: 'bar',
+                        stack: 'y',
+                        name: nameArray[1]
+
+                    },
+                    {
+                        data: dataArray[nameArray[2]].map(item => item[yaxis]),
+                        type: 'line',
+                        stack: 'x',
+                        name: nameArray[2]
+
+                    }
+                ]
+            }
             chart.setOption(option)
         }
     }
 }
+
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.el-card {
+    margin-bottom: 10px;
+}
+</style>
