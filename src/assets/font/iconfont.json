@@ -1,0 +1,30 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "12004874",
+      "name": "Browser",
+      "font_class": "Browser",
+      "unicode": "eaa4",
+      "unicode_decimal": 60068
+    },
+    {
+      "icon_id": "12004901",
+      "name": "Dashboards",
+      "font_class": "Dashboards",
+      "unicode": "eaa7",
+      "unicode_decimal": 60071
+    },
+    {
+      "icon_id": "12004981",
+      "name": "Cart",
+      "font_class": "Cart",
+      "unicode": "eaac",
+      "unicode_decimal": 60076
+    }
+  ]
+}
