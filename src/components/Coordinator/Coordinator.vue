@@ -223,11 +223,7 @@ export default {
     justify-content: space-between;
 }
 
-.box-card {
-    display: flex;
-    flex-direction: column;
-
-}
+// 
 
 .el-button {
     width: 30%;

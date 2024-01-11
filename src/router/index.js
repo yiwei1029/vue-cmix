@@ -7,7 +7,7 @@ import Request from '../components/Request/Request.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
+const routes = [{path:'/',redirect:'/login'},
   {
     path: '/login',
     name: 'login',

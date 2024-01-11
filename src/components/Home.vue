@@ -33,16 +33,10 @@ export default {
                 { name: 'Request', id: '2', children: [{ name: 'Directory', id: '2-1', path: 'directory' }] },
                 { name: 'Query Data', id: '3', children: [{ name: 'Dashboard', id: '3-1', path: 'dashboard' }] }
             ],
-            toggleCollapse: false,
-            IconObject: {
-                '1': 'iconfont icon-query',
-                '2': 'iconfont icon-qsy-shuzhilifang',
-                '3': 'iconfont icon-chaosongren'
-                // '1': '#icon-Browser',
-                // '2': '#icon-Cart',
-                // '3': '#icon-Dashboards'
-            },
-            activePath: ''
+
+            activePath: '',
+            
+
         };
     },
     methods: {
