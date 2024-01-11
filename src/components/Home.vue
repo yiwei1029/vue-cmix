@@ -4,20 +4,15 @@
             <div>
                 <img class="homelogo" src="../assets/homelogo.png" alt="">
                 <span>Cmixing User Center</span>
-            </div>
-            <el-button type="primary" @click="backToLogin" class="btns">Exit</el-button>
-        </el-header>
-        <el-container>
-            <el-aside class="el-aside" :width="toggleCollapse ? '50px' : '200px'">
-                <!-- <div class="toggle-collapse" @click="toggleCollapseClick">|||</div> -->
-                <el-menu class="el-menu" :unique-opened="true" :collapse="toggleCollapse" router
-                    :default-active="activePath" v-for="menu in MenuList">
+                <el-menu :default-active="activePath" router mode="horizontal" background-color="" v-for="menu in MenuList">
                     <el-menu-item :index="'/' + menu.name" @click="saveActive('/' + menu.name)">
-                        <span :class="IconObject[menu.id]" style="margin-right: 5px;"></span>
                         {{ menu.name }}
                     </el-menu-item>
                 </el-menu>
-            </el-aside>
+            </div>
+            <el-button type="primary" @click="backToLogin" class="btns" style="height: 60%;margin:auto 0">Exit</el-button>
+        </el-header>
+        <el-container>
             <!-- 主体区域 -->
             <el-main class="el-main">
                 <router-view></router-view>
@@ -89,10 +84,7 @@ export default {
 
 }
 
-.el-menu {
-    /* background-color: #333744; */
-    color: #ffffff8a;
-}
+
 
 .homelogo {
     height: 100%;
@@ -104,15 +96,16 @@ export default {
     padding: 0;
 }
 
+
 /* .btns {
   display: flex;
   justify-content: end;
 } */
 .el-header {
-    background-color: #373d41;
+    //background-color: #373d41;
     display: flex;
     justify-content: space-between;
-    color: #fff;
+    color: #909399;
     font-size: 20px;
     padding-left: 0;
 

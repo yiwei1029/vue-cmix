@@ -48,7 +48,7 @@ export default {
     mounted() { },
     methods: {
         login() {
-            this.$router.push('/home')
+            this.$router.push('/Coordinator')
         }
     }
 }
