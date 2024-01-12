@@ -5,7 +5,7 @@
                 <img class="homelogo" src="../assets/homelogo.png" alt="">
                 <span>Cmixing User Center</span>
                 <el-menu :default-active="activePath" router mode="horizontal" background-color="" v-for="menu in MenuList">
-                    <el-menu-item :index="'/' + menu.name" @click="saveActive('/' + menu.name)">
+                    <el-menu-item :index="'/' + menu.path" @click="saveActive('/' + menu.name)">
                         {{ menu.name }}
                     </el-menu-item>
                 </el-menu>
@@ -29,13 +29,13 @@ export default {
     data() {
         return {
             MenuList: [
-                { name: 'Coordinator', id: '1', children: [] },
-                { name: 'Request', id: '2', children: [{ name: 'Directory', id: '2-1', path: 'directory' }] },
-                { name: 'Query Data', id: '3', children: [{ name: 'Dashboard', id: '3-1', path: 'dashboard' }] }
+                { name: 'Coordinator', id: '1', path: 'coordinator', children: [] },
+                { name: 'Request', id: '2', path: 'request', children: [{ name: 'Directory', id: '2-1', path: 'directory' }] },
+                { name: 'Query Data', id: '3', path: 'query', children: [{ name: 'Dashboard', id: '3-1', path: 'dashboard' }] }
             ],
 
             activePath: '',
-            
+
 
         };
     },

@@ -41,21 +41,7 @@
             <!-- 右边 -->
             <el-col :span="7">
                 <el-card>
-                    <div class="left-right">
-                        Select A Coordination
-                    </div>
 
-                    <div class="left-right">
-                        <el-input placeholder="Please input c"></el-input>
-                        <el-button type="primary" @click="sendRequest">Send Request</el-button>
-                    </div>
-                    <div class="number-display" v-if="NumberDisplay">
-                        <div>#Input: {{ 1 }}</div>
-                        <div>#Output: {{ 1 }}</div>
-                        <div>Fee: {{ 0.01 }}</div>
-                    </div>
-
-                    <el-button type="primary">Send Transaction</el-button>
                 </el-card>
             </el-col>
         </el-row>
@@ -80,19 +66,13 @@ export default {
                 { hash: 'bc1q5t94hycpjv2uegcchfr7q30tsuhq8wd2u90cg4', amount: 0.00349666 },
                 { hash: 'bc1qm4ztr7257hlqk3x670zr6maz36qnehczuetqrn', amount: 0.00428200 }
 
-            ],
-            show: true,
-            NumberDisplay: false
+            ]
         }
     },
     components: {},
     watch: {},
     mounted() { },
-    methods: {
-        sendRequest() {
-            this.NumberDisplay = true
-        }
-    }
+    methods: {}
 }
 </script>
 
@@ -125,20 +105,6 @@ export default {
 
 .el-input {
     width: 50%;
-}
-
-.number-display {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-
-    >div {
-        background-color: #8977fd;
-        color: #fff;
-        padding: 8px;
-        border-radius: 4px;
-
-    }
 }
 </style>
 

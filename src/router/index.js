@@ -4,6 +4,7 @@ import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
 import Coordinator from '../components/Coordinator/Coordinator.vue'
 import Request from '../components/Request/Request.vue'
+import Query from '../components/Query/Query.vue'
 
 Vue.use(VueRouter)
 
@@ -18,7 +19,8 @@ const routes = [{path:'/',redirect:'/login'},
     component:Home,
     children:[
       {path:'/coordinator',component:Coordinator},
-      {path:'/request',component:Request}
+      {path:'/request',component:Request},
+      {path:'/query',component:Query}
 
     ]
   }
