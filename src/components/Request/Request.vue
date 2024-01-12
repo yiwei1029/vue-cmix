@@ -44,10 +44,14 @@
                     <div class="left-right">
                         Select A Coordination
                     </div>
-
-                    <div class="left-right">
-                        <el-input placeholder="Please input c"></el-input>
-                        <el-button type="primary" @click="sendRequest">Send Request</el-button>
+                    <!-- form to sumbit c -->
+                    <div>
+                        <el-form :model="Form" style="display: flex; align-items: start;">
+                            <el-form-item>
+                                <el-input placeholder="Please input c" v-model="Form.valueOfC"></el-input>
+                            </el-form-item>
+                            <el-button type="primary" @click="sendRequest">Send Request</el-button>
+                        </el-form>
                     </div>
                     <div class="number-display" v-if="NumberDisplay">
                         <div>#Input: {{ 1 }}</div>
@@ -55,7 +59,7 @@
                         <div>Fee: {{ 0.01 }}</div>
                     </div>
 
-                    <el-button type="primary">Send Transaction</el-button>
+                    <el-button type="primary" style="width: 100%;">Send Transaction</el-button>
                 </el-card>
             </el-col>
         </el-row>
@@ -82,7 +86,10 @@ export default {
 
             ],
             show: true,
-            NumberDisplay: false
+            NumberDisplay: false,
+            Form: {
+                valueOfC: ''
+            }
         }
     },
     components: {},
@@ -110,7 +117,6 @@ export default {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-    // align-items: stretch;
     align-items: center;
 
     :first-child {
@@ -124,7 +130,7 @@ export default {
 }
 
 .el-input {
-    width: 50%;
+    // width: 50%;
 }
 
 .number-display {

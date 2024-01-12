@@ -4,7 +4,8 @@
             <div>
                 <img class="homelogo" src="../assets/homelogo.png" alt="">
                 <span>Cmixing User Center</span>
-                <el-menu :default-active="activePath" router mode="horizontal" background-color="" v-for="menu in MenuList">
+                <el-menu :default-active="activePath" router mode="horizontal" class="el-menu-demo"
+                    active-text-color="#ffd04b" v-for="menu in MenuList">
                     <el-menu-item :index="'/' + menu.path" @click="saveActive('/' + menu.name)">
                         {{ menu.name }}
                     </el-menu-item>
@@ -111,9 +112,7 @@ export default {
     }
 }
 
-.el-aside {
-    background-color: #333744;
-}
+
 
 .el-main {
     background-color: #eaedf1;
