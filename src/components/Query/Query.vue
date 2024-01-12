@@ -118,8 +118,12 @@ export default {
             InputCurrentPick: '',
             OnputCurrentPick: '',
             OutputStats: [
-                { OutputAmount: 1, Stats: 3 },
+                { OutputAmount: 1, Stats: 6 },
                 { OutputAmount: 3, Stats: 2 },
+                { OutputAmount: 3, Stats: 2 },
+                { OutputAmount: 5, Stats: 1 },
+                { OutputAmount: 6, Stats: 5 },
+                { OutputAmount: 4, Stats: 3 },
             ]
         }
     },
@@ -132,26 +136,32 @@ export default {
         createChart(divName, dataArr) {
             var Chart = echarts.init(document.getElementById(divName))
             var option = {
+                title: {
+                    text: 'The Number of Outputs'
+                },
                 tooltip: {
                     trigger: 'item',
                     formatter: "{c}"
                 },
-                // legend: {
-                //     orient: 'vertical',
-                //     x: 'left',
-                //     left: 5
-                // },
+                legend: {
+                    orient: 'vertical',
+                    data: ["Output's Amounts"],
+                    right: 10,
+                    bottom: 10
+                },
                 xAxis: {
                     data: dataArr.map(item => item.OutputAmount),
-                    name: "Amounts"
+                    // name: "Amounts"
+                    // text: 'Amounts'
                 },
                 yAxis:
                 {
-                    name: '#Outputs',
+                    // name: '#Outputs',
 
                 }
                 ,
                 series: [{
+                    name: "Output's Amounts",
                     type: 'bar',
                     data: dataArr.map(item => item.Stats),
                     itemStyle: {
