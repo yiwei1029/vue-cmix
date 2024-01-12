@@ -48,7 +48,7 @@
             <el-row :gutter="20">
                 <el-col :span="6" v-for="item in Stats">
                     <div>
-                        <el-statistic :title="item.title" group-separator=",">
+                        <el-statistic :title="item.title" group-separator="," :style="randomRgb()">
                             <template slot="formatter">
                                 {{ item.value }}
                             </template>
@@ -111,6 +111,14 @@ export default {
         this.createMultiChart('chart3', this.IndicatorByTime, 'time', 'value', ['Request', 'Transaction', 'Revenue'])
     },
     methods: {
+        randomRgb(item) {
+            let R = Math.floor(Math.random() * 130 + 110);
+            let G = Math.floor(Math.random() * 130 + 110);
+            let B = Math.floor(Math.random() * 130 + 110);
+            console.log(R, G, B)
+            return { background: 'rgb(' + R + ',' + G + ',' + B + ', .5)', borderRadius: '5px' }
+        },
+
         createPieChart(divName, dataArray) {
             var chart = echarts.init(document.getElementById(divName));
             var option = {

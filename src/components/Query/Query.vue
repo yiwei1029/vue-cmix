@@ -50,11 +50,11 @@
                     </el-row>
 
                 </el-card>
-                <!-- chart -->
+                <!-- chart图表 -->
                 <el-card>
                     <div id="chart1" style="width:100%; height:300px"></div>
                 </el-card>
-                <!-- form -->
+                <!-- form提交输入输出 -->
                 <el-card>
 
                     <div class="left-right">
