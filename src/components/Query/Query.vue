@@ -59,7 +59,7 @@
 
                     <div class="left-right">
                         <span>Input</span>
-                        <el-select v-model="InputCurrentPick" placeholder="select an output">
+                        <el-select v-model="InputCurrentPick" placeholder="select an input">
                             <el-option v-for="item in InputListToSelect" :key="item.hash" :value="item.hash">
                             </el-option>
                         </el-select>

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
+import Test from '../components/Test.vue'
 import Coordinator from '../components/Coordinator/Coordinator.vue'
 import Request from '../components/Request/Request.vue'
 import Query from '../components/Query/Query.vue'
@@ -23,6 +24,10 @@ const routes = [{path:'/',redirect:'/login'},
       {path:'/query',component:Query}
 
     ]
+  },
+  {
+    path:'/test',
+    component:Test
   }
 
 ]
