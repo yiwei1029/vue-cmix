@@ -12,7 +12,7 @@
                     <div class="left-right"><el-input></el-input> <el-button type="danger">Remove</el-button></div>
                 </el-card></el-col>
             <el-col :span="8"><el-card class="box-card">
-                    <div style="width:400px; height:150px" id="chart2"></div>
+                    <div style="width:350px; height:150px" id="chart2"></div>
                 </el-card></el-col>
         </el-row>
         <!-- algo and commision rate -->
@@ -39,7 +39,7 @@
         <!-- chart -->
         <el-row :gutter="10">
             <el-col :span="24"><el-card class="box-card">
-                    <div style="width: 1000px; height: 400px;" id="chart3">
+                    <div style="width: 100%; height: 400px;" id="chart3">
                     </div>
                 </el-card></el-col>
         </el-row>
@@ -163,8 +163,9 @@ export default {
                 },
                 legend: {
                     orient: 'horizontal',
-                    x: 'left',
-                    data: nameArray
+                    x: 'right',
+                    data: nameArray,
+                    fontSize: 30
                 },
                 yAxis: [{ name: 'value' }],
                 series: [
@@ -221,9 +222,7 @@ export default {
 
 }
 
-.el-select {
-    margin-right: 0;
-}
+
 
 .top-bottom {
     display: flex;
@@ -234,7 +233,7 @@ export default {
 // 
 
 .el-button {
-    width: 30%;
+    // width: 100px;
 }
 
 .el-select {

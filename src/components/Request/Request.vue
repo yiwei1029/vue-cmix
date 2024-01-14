@@ -39,7 +39,7 @@
                 </el-card>
             </el-col>
             <!-- 右边 -->
-            <el-col :span="7">
+            <el-col :span="10">
                 <el-card>
                     <div class="left-right">
                         Select A Coordination
@@ -141,8 +141,8 @@ export default {
     >div {
         background-color: #8977fd;
         color: #fff;
-        padding: 8px;
-        border-radius: 4px;
+        padding: 4px 6px;
+        border-radius: 6px;
 
     }
 }
