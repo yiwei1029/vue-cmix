@@ -54,7 +54,11 @@
             <el-col :span="10">
                 <el-card>
                     <div class="left-right">
-                        Select A Coordination
+                        <el-select style="width: 100%;" placeholder="Select A Coordination">
+
+                        </el-select>
+                        <!-- <el-button></el-button> -->
+
                     </div>
                     <!-- form to sumbit c -->
                     <div>

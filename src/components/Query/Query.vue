@@ -1,13 +1,21 @@
 <template>
     <section class="Request">
+
         <el-row :gutter="10">
+            <el-col :span="21">
+                <el-card>
+                    <el-select style="width: 100%" placeholder="Select a Transaction"></el-select>
+                </el-card>
+            </el-col>
+
             <!-- 左边 -->
+
             <el-col :span="12">
                 <!-- input -->
 
                 <el-card>
                     <el-row><span>Input</span></el-row>
-                    <el-row v-for="input  in InputList" :gutter="20">
+                    <el-row v-for=" input   in  InputList " :gutter="20">
                         <el-col :span="15">
                             <!-- <div>{{ input.hash }}</div> -->
                             <el-popover placement="top-start" trigger="hover" :content="input.hash">
@@ -25,7 +33,7 @@
                 <!-- output -->
                 <el-card>
                     <el-row><span>Output</span></el-row>
-                    <el-row v-for="output  in OutputList" :gutter="20">
+                    <el-row v-for=" output   in  OutputList " :gutter="20">
                         <el-col :span="15">
                             <el-popover placement="top-start" trigger="hover" :content="output.hash">
                                 <el-button slot="reference" type="text">{{ output.hash.substring(0, 40) + "..."
@@ -54,7 +62,7 @@
                 </el-card>
                 <!-- chart图表 -->
                 <el-card>
-                    <div id="chart1" style="width:100%; height:300px"></div>
+                    <div id="chart1" style="width:100%; height:200px"></div>
                 </el-card>
                 <!-- form提交输入输出 -->
                 <el-card>
@@ -62,14 +70,14 @@
                     <div class="left-right">
                         <span>Input</span>
                         <el-select v-model="InputCurrentPick" placeholder="select an input">
-                            <el-option v-for="item in InputListToSelect" :key="item.hash" :value="item.hash">
+                            <el-option v-for=" item  in  InputListToSelect " :key="item.hash" :value="item.hash">
                             </el-option>
                         </el-select>
                     </div>
                     <div class="left-right">
                         <span>Output</span>
                         <el-select v-model="OnputCurrentPick" placeholder="select an output">
-                            <el-option v-for="item in OutputListToSelect" :key="item.hash" :value="item.hash">
+                            <el-option v-for=" item  in  OutputListToSelect " :key="item.hash" :value="item.hash">
                             </el-option>
                         </el-select>
                     </div>
