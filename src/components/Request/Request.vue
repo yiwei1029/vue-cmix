@@ -6,6 +6,7 @@
                 <!-- input -->
 
                 <el-card>
+                    <el-row><span>Input</span></el-row>
                     <el-row v-for="input  in InputList" :gutter="20">
                         <el-col :span="15">
                             <!-- <div>{{ input.hash }}</div> -->
@@ -20,9 +21,15 @@
                             </el-popover>
                         </el-col>
                     </el-row>
+                    <el-row>
+                        <el-col :span="15">
+                            <el-button style="width: 100%;">+</el-button>
+                        </el-col>
+                    </el-row>
                 </el-card>
                 <!-- output -->
                 <el-card>
+                    <el-row><span>Output</span></el-row>
                     <el-row v-for="output  in OutputList" :gutter="20">
                         <el-col :span="15">
                             <el-popover placement="top-start" trigger="hover" :content="output.hash">
@@ -34,6 +41,11 @@
                             <el-popover disabled>
                                 <el-button slot="reference" type="text">{{ output.amount }}</el-button>
                             </el-popover>
+                        </el-col>
+                    </el-row>
+                    <el-row>
+                        <el-col :span="15">
+                            <el-button style="width: 100%;">+</el-button>
                         </el-col>
                     </el-row>
                 </el-card>
