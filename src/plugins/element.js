@@ -13,7 +13,9 @@ import { InputNumber } from 'element-ui'
 import { Statistic } from 'element-ui'
 import { Select ,Option} from 'element-ui'
 import { Popover } from 'element-ui'
+import { MessageBox } from 'element-ui'
 Vue.prototype.$message=Message
+Vue.prototype.$msgbox=MessageBox
 Vue.use(Button)
 Vue.use(Form)
 Vue.use(FormItem)

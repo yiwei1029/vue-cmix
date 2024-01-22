@@ -23,7 +23,7 @@
                     </el-row>
                     <el-row>
                         <el-col :span="15">
-                            <el-button style="width: 100%;">+</el-button>
+                            <el-button style="width: 100%;" @click="addInput">+ add a input </el-button>
                         </el-col>
                     </el-row>
                 </el-card>
@@ -45,7 +45,7 @@
                     </el-row>
                     <el-row>
                         <el-col :span="15">
-                            <el-button style="width: 100%;">+</el-button>
+                            <el-button style="width: 100%;" @click="addOutput">+ add a output </el-button>
                         </el-col>
                     </el-row>
                 </el-card>
@@ -54,8 +54,10 @@
             <el-col :span="10">
                 <el-card>
                     <div class="left-right">
-                        <el-select style="width: 100%;" placeholder="Select A Coordination">
+                        <el-select v-model="CoordToSelect" style="width: 100%;" placeholder="Select A Coordination">
+                            <el-option v-for="item in Coords" :key="item" :value="item">
 
+                            </el-option>
                         </el-select>
                         <!-- <el-button></el-button> -->
 
@@ -75,7 +77,7 @@
                         <div>Fee: {{ 0.01 }}</div>
                     </div>
 
-                    <el-button type="primary" style="width: 100%;">Send Transaction</el-button>
+                    <el-button type="primary" style="width: 100%;" @click="sendTransaction">Send Transaction</el-button>
                 </el-card>
             </el-col>
         </el-row>
@@ -89,23 +91,29 @@ export default {
         return {
             InputList: [
                 { hash: 'bc1quqfl65xqtkprhrygpdpeg4r7q20zyaq8xvxd3a', amount: 0.00571223 },
-                { hash: 'bc1qnalwjznls42dzvaw4m5u48td032692aslqwg9m', amount: 0.00127342 },
-                { hash: 'bc1q5t94hycpjv2uegcchfr7q30tsuhq8wd2u90cg4', amount: 0.00349666 },
-                { hash: 'bc1qm4ztr7257hlqk3x670zr6maz36qnehczuetqrn', amount: 0.00428200 }
+                // { hash: 'bc1qnalwjznls42dzvaw4m5u48td032692aslqwg9m', amount: 0.00127342 },
+                // { hash: 'bc1q5t94hycpjv2uegcchfr7q30tsuhq8wd2u90cg4', amount: 0.00349666 },
+                // { hash: 'bc1qm4ztr7257hlqk3x670zr6maz36qnehczuetqrn', amount: 0.00428200 }
 
             ],
             OutputList: [
-                { hash: 'bc1quqfl65xqtkprhrygpdpeg4r7q20zyaq8xvxd3a', amount: 0.00571223 },
-                { hash: 'bc1qnalwjznls42dzvaw4m5u48td032692aslqwg9m', amount: 0.00127342 },
-                { hash: 'bc1q5t94hycpjv2uegcchfr7q30tsuhq8wd2u90cg4', amount: 0.00349666 },
-                { hash: 'bc1qm4ztr7257hlqk3x670zr6maz36qnehczuetqrn', amount: 0.00428200 }
+                // { hash: 'bc1quqfl65xqtkprhrygpdpeg4r7q20zyaq8xvxd3a', amount: 0.00571223 },
+                // { hash: 'bc1qnalwjznls42dzvaw4m5u48td032692aslqwg9m', amount: 0.00127342 },
+                // { hash: 'bc1q5t94hycpjv2uegcchfr7q30tsuhq8wd2u90cg4', amount: 0.00349666 },
+                // { hash: 'bc1qm4ztr7257hlqk3x670zr6maz36qnehczuetqrn', amount: 0.00428200 }
+                { hash: 'bc1qm4ztr7257hlqk3x670zr6maz36qnehczuetqrn', amount: 0.00571223 },
+
 
             ],
             show: true,
             NumberDisplay: false,
             Form: {
                 valueOfC: ''
-            }
+            },
+            PromptInputHash: '',
+            PromptOutputHash: '',
+            Coords: ['C1', 'C2', 'C3'],
+            CoordToSelect: '',
         }
     },
     components: {},
@@ -113,7 +121,51 @@ export default {
     mounted() { },
     methods: {
         sendRequest() {
-            this.NumberDisplay = true
+            this.NumberDisplay = true;
+        },
+        sendTransaction() {
+            this.$message({
+                type: 'success',
+                message: 'Send transaction success'
+            });
+            this.$router.push('/query')
+
+        },
+        addInput() {
+            this.$msgbox.prompt('please input', 'Input', {
+                confirmButtonText: 'Confirm',
+                cancelButtonText: 'Cancel',
+            }).then(({ value }) => {
+                const newAdd = { hash: value, amount: Math.random() }
+                this.InputList.push(newAdd)
+                this.$message({
+                    type: 'success',
+                    message: 'your input: ' + value
+                });
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: 'Cancel'
+                });
+            });
+        },
+        addOutput() {
+            this.$msgbox.prompt('please input', 'Output', {
+                confirmButtonText: 'Confirm',
+                cancelButtonText: 'Cancel',
+            }).then(({ value }) => {
+                const newAdd = { hash: value, amount: this.InputList[this.InputList.length - 1].amount }
+                this.OutputList.push(newAdd)
+                this.$message({
+                    type: 'success',
+                    message: 'your input: ' + value
+                });
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: 'Cancel'
+                });
+            });
         }
     }
 }

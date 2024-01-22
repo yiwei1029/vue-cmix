@@ -4,13 +4,16 @@
         <el-row :gutter="10">
             <el-col :span="21">
                 <el-card>
-                    <el-select style="width: 100%" placeholder="Select a Transaction"></el-select>
+                    <el-select v-model="BlockCurrentPick" style="width: 100%" placeholder="Select a Transaction">
+                        <el-option v-for="item in Blocks" :key="item" :label="item" :value="item">
+                        </el-option>
+                    </el-select>
                 </el-card>
             </el-col>
 
             <!-- 左边 -->
 
-            <el-col :span="12">
+            <el-col :span="12" v-if="BlockCurrentPick">
                 <!-- input -->
 
                 <el-card>
@@ -49,11 +52,13 @@
                 </el-card>
             </el-col>
             <!-- 右边 -->
-            <el-col :span="9">
+            <el-col :span="9" >
                 <el-card>
                     <el-row>
-                        <div class="left-right"><span>Block Height</span><span style="width:50%">{{ 78 }}</span></div>
-                        <div class="left-right"><span>Block Hash</span><span style="width:50%">{{ '0x4b...fe5' }}</span>
+                        <div class="left-right"><span>Block Height</span><span style="width:50%">{{
+                            parseInt(Math.random() * 100) }}</span></div>
+                        <div class="left-right"><span>Block Hash</span><span style="width:50%">{{
+                            BlockCurrentPick.substring(0, 10) + '...' }}</span>
                         </div>
                         <div class="left-right"><span>Time</span><span style="width:50%">{{ '2023-10-23 23:59:59'
                         }}</span></div>
@@ -83,8 +88,11 @@
                     </div>
                     <div class="left-right">
                         <span><i class="iconfont icon-jisuanqi"></i></span>
-                        <el-button style="padding:14px">Calculate the probability</el-button>
+                        <el-button style="padding:14px" @click="showProb = !showProb">Calculate the probability</el-button>
                     </div>
+
+                    <el-button v-if="showProb" style="width: 100%; background-color: #91cc75; color: balck;">Probability: {{
+                        0.8 }}</el-button>
 
                 </el-card>
             </el-col>
@@ -98,18 +106,20 @@ export default {
     name: 'Request',
     data() {
         return {
+            Prob: '',
+            showProb: false,
             InputList: [
-                { hash: 'bc1quqfl65xqtkprhrygpdpeg4r7q20zyaq8xvxd3a', amount: 0.00571223 },
-                { hash: 'bc1qnalwjznls42dzvaw4m5u48td032692aslqwg9m', amount: 0.00127342 },
-                { hash: 'bc1q5t94hycpjv2uegcchfr7q30tsuhq8wd2u90cg4', amount: 0.00349666 },
-                { hash: 'bc1qm4ztr7257hlqk3x670zr6maz36qnehczuetqrn', amount: 0.00428200 }
+                { hash: 'bc1quqfl65xqtkprhrygpdpeg4r7q20zyaq8xvxd3a', amount: 5 },
+                { hash: 'bc1qnalwjznls42dzvaw4m5u48td032692aslqwg9m', amount: 4 },
+                // { hash: 'bc1q5t94hycpjv2uegcchfr7q30tsuhq8wd2u90cg4', amount: 0.00349666 },
+                // { hash: 'bc1qm4ztr7257hlqk3x670zr6maz36qnehczuetqrn', amount: 0.00428200 }
 
             ],
             OutputList: [
-                { hash: 'bc1quqfl65xqtkprhrygpdpeg4r7q20zyaq8xvxd3a', amount: 0.00571223 },
-                { hash: 'bc1qnalwjznls42dzvaw4m5u48td032692aslqwg9m', amount: 0.00127342 },
-                { hash: 'bc1q5t94hycpjv2uegcchfr7q30tsuhq8wd2u90cg4', amount: 0.00349666 },
-                { hash: 'bc1qm4ztr7257hlqk3x670zr6maz36qnehczuetqrn', amount: 0.00428200 }
+                { hash: 'bc1quqfl65xqtkprhrygpdpeg4r7q20zyaq8xvxd3a', amount: 3 },
+                { hash: 'bc1qnalwjznls42dzvaw4m5u48td032692aslqwg9m', amount: 3 },
+                { hash: 'bc1q5t94hycpjv2uegcchfr7q30tsuhq8wd2u90cg4', amount: 2 },
+                { hash: 'bc1qm4ztr7257hlqk3x670zr6maz36qnehczuetqrn', amount: 1 }
 
             ], InputListToSelect: [
                 { hash: 'bc1quqfl65xqtkprhrygpdpeg4r7q20zyaq8xvxd3a', amount: 0.00571223 },
@@ -134,7 +144,12 @@ export default {
                 { OutputAmount: 5, Stats: 1 },
                 { OutputAmount: 6, Stats: 5 },
                 { OutputAmount: 4, Stats: 3 },
-            ]
+            ],
+            Blocks: [
+                '00000000000000000003b48f935bfaaa68a8e3444a266bb529136a863fe98bd4',
+                '000000000000000000014b6c9352acf8af6ca6bcf5578c57c6dc9a661a4fbbcc'
+            ],
+            BlockCurrentPick: ''
         }
     },
     components: {},
