@@ -3,15 +3,22 @@
         <!-- budget and privacy -->
         <el-row :gutter="10">
             <el-col :span="8"><el-card class="box-card">
+                    <div>Balance Status</div>
                     <div style="width:300px; height:150px" id="chart1"></div>
                 </el-card></el-col>
-            <el-col :span="8"><el-card class="box-card" style="height:190px">
+            <el-col :span="8"><el-card class="box-card" style="height:210px">
                     <div class="left-right"><span>Balance:</span><span>{{ Balance }}</span></div>
-                    <div class="left-right"><span>Budget:</span><span>{{ Budget }}</span></div>
-                    <div class="left-right"><el-input></el-input> <el-button type="primary">Add </el-button></div>
-                    <div class="left-right"><el-input></el-input> <el-button type="danger">Remove</el-button></div>
+                    <div class="left-right"><span>Budget:</span><span>{{ Budget
+                    }}</span>
+                    </div>
+                    <div class="left-right"><el-input v-model="BudgetAdd"></el-input> <el-button @click="ClickAddBudget"
+                            type="primary" style="width: 100%">Add
+                        </el-button></div>
+                    <div class="left-right"><el-input v-model="BudgetReduce"></el-input> <el-button
+                            @click="ClickReduceBudget" type="danger" style="width: 100%;">Remove</el-button></div>
                 </el-card></el-col>
             <el-col :span="8"><el-card class="box-card">
+                    <div>Privacy using Percentage</div>
                     <div style="width:350px; height:150px" id="chart2"></div>
                 </el-card></el-col>
         </el-row>
@@ -66,8 +73,7 @@ export default {
     name: 'Coordinator',
     data() {
         return {
-            Balance: '5.3710',
-            Budget: '2.0000',
+            Balance: '5.37',
             Stats: [
                 { title: 'Today Active User', value: 1572 },
                 { title: 'Today Revenue', value: 37362 },
@@ -96,8 +102,10 @@ export default {
                 Transaction: [{ time: '10:50', value: 10 }, { time: '10:51', value: 15 }, { time: '10:52', value: 20 }],
                 Revenue: [{ time: '10:50', value: 10 }, { time: '10:51', value: 0 }, { time: '10:52', value: 30 }]
 
-            }
-
+            },
+            Budget: 0,
+            BudgetAdd: 0,
+            BudgetReduce: 0
 
         }
     },
@@ -111,11 +119,20 @@ export default {
         this.createMultiChart('chart3', this.IndicatorByTime, 'time', 'value', ['Request', 'Transaction', 'Revenue'])
     },
     methods: {
+        ClickAddBudget() {
+            this.Budget += parseFloat(this.BudgetAdd)
+            this.Budget = this.Budget > this.Balance ? this.Balance : this.Budget
+        },
+        ClickReduceBudget() {
+            this.Budget -= parseFloat(this.BudgetReduce)
+            this.Budget = this.Budget < 0 ? 0 : this.Budget
+
+        },
         randomRgb(item) {
             let R = Math.floor(Math.random() * 130 + 110);
             let G = Math.floor(Math.random() * 130 + 110);
             let B = Math.floor(Math.random() * 130 + 110);
-            console.log(R, G, B)
+            // console.log(R, G, B)
             return { background: 'rgb(' + R + ',' + G + ',' + B + ', .5)', borderRadius: '5px' }
         },
 

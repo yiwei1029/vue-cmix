@@ -4,6 +4,8 @@ import router from './router'
 import './plugins/element.js'
 import './assets/css/global.css'
 import './assets/font/iconfont.css'
+// import ElementUI from 'element-ui';
+// Vue.use(ElementUI);
 Vue.config.productionTip = false
 
 new Vue({
