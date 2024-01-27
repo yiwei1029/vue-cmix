@@ -2,7 +2,7 @@
     <section class="Request">
 
         <el-row :gutter="10">
-            <el-col :span="21">
+            <el-col :span="9">
                 <el-card>
                     <el-select v-model="BlockCurrentPick" style="width: 100%" placeholder="Select a Transaction">
                         <el-option v-for="item in Blocks" :key="item" :label="item" :value="item">
@@ -10,10 +10,10 @@
                     </el-select>
                 </el-card>
             </el-col>
-
-            <!-- 左边 -->
-
-            <el-col :span="12" v-if="BlockCurrentPick">
+        </el-row>
+        <!-- 左边 -->
+        <el-row :gutter="10">
+            <el-col :span="3" v-if="BlockCurrentPick">
                 <!-- input -->
 
                 <el-card>
@@ -52,7 +52,7 @@
                 </el-card>
             </el-col>
             <!-- 右边 -->
-            <el-col :span="9" >
+            <el-col :span="6">
                 <el-card>
                     <el-row>
                         <div class="left-right"><span>Block Height</span><span style="width:50%">{{
@@ -88,7 +88,7 @@
                     </div>
                     <div class="left-right">
                         <span><i class="iconfont icon-jisuanqi"></i></span>
-                        <el-button style="padding:14px" @click="showProb = !showProb">Calculate the probability</el-button>
+                        <el-button style="padding:14px" @click="showProb = !showProb">Calculate The Probability</el-button>
                     </div>
 
                     <el-button v-if="showProb" style="width: 100%; background-color: #91cc75; color: balck;">Probability: {{
@@ -214,7 +214,7 @@ export default {
 }
 
 .el-card {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .left-right {

@@ -2,11 +2,11 @@
     <section class="Coordinator">
         <!-- budget and privacy -->
         <el-row :gutter="10">
-            <el-col :span="8"><el-card class="box-card">
+            <el-col :span="4"><el-card class="box-card">
                     <div>Balance Status</div>
                     <div style="width:300px; height:150px" id="chart1"></div>
                 </el-card></el-col>
-            <el-col :span="8"><el-card class="box-card" style="height:210px">
+            <el-col :span="4"><el-card class="box-card" style="height:210px">
                     <div class="left-right"><span>Balance:</span><span>{{ Balance }}</span></div>
                     <div class="left-right"><span>Budget:</span><span>{{ Budget
                     }}</span>
@@ -17,14 +17,14 @@
                     <div class="left-right"><el-input v-model="BudgetReduce"></el-input> <el-button
                             @click="ClickReduceBudget" type="danger" style="width: 100%;">Remove</el-button></div>
                 </el-card></el-col>
-            <el-col :span="8"><el-card class="box-card">
-                    <div>Privacy using Percentage</div>
+            <el-col :span="4"><el-card class="box-card">
+                    <div>Privacy Using Percentage</div>
                     <div style="width:350px; height:150px" id="chart2"></div>
                 </el-card></el-col>
         </el-row>
         <!-- algo and commision rate -->
         <el-row :gutter="10">
-            <el-col :span="24"><el-card class="box-card">
+            <el-col :span="12"><el-card class="box-card">
                     <div class="left-right">
                         <span>Existing Coordination Algorithm</span>
                         <el-select v-model="AlgoCurrentPicking" placeholder="select">
@@ -45,15 +45,15 @@
 
         <!-- chart -->
         <el-row :gutter="10">
-            <el-col :span="24"><el-card class="box-card">
+            <el-col :span="12"><el-card class="box-card">
                     <div style="width: 100%; height: 400px;" id="chart3">
                     </div>
                 </el-card></el-col>
         </el-row>
         <!-- Stats -->
-        <el-card>
-            <el-row :gutter="20">
-                <el-col :span="6" v-for="item in Stats">
+        <el-row :gutter="20">
+
+            <el-col :span="3" v-for="item in Stats">
                     <div>
                         <el-statistic :title="item.title" group-separator="," :style="randomRgb()">
                             <template slot="formatter">
@@ -61,9 +61,8 @@
                             </template>
                         </el-statistic>
                     </div>
-                </el-col>
-            </el-row>
-        </el-card>
+            </el-col>
+        </el-row>
     </section>
 </template>
 
@@ -73,7 +72,7 @@ export default {
     name: 'Coordinator',
     data() {
         return {
-            Balance: '5.37',
+            Balance: '100',
             Stats: [
                 { title: 'Today Active User', value: 1572 },
                 { title: 'Today Revenue', value: 37362 },
@@ -104,8 +103,8 @@ export default {
 
             },
             Budget: 0,
-            BudgetAdd: 0,
-            BudgetReduce: 0
+            BudgetAdd: 1,
+            BudgetReduce: 1
 
         }
     },

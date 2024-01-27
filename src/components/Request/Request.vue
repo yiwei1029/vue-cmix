@@ -2,7 +2,7 @@
     <section class="Request">
         <el-row :gutter="10">
             <!-- 左边 -->
-            <el-col :span="12">
+            <el-col :span="8">
                 <!-- input -->
 
                 <el-card>
@@ -51,7 +51,7 @@
                 </el-card>
             </el-col>
             <!-- 右边 -->
-            <el-col :span="10">
+            <el-col :span="6">
                 <el-card>
                     <div class="left-right">
                         <el-select v-model="CoordToSelect" style="width: 100%;" placeholder="Select A Coordination">
