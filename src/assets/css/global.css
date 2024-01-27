@@ -8,3 +8,7 @@ html,body,#app{
 .el-button{
     font-weight: bolder;
 }
+
+::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+  }
