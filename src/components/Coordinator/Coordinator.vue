@@ -11,11 +11,12 @@
                     <div class="left-right"><span>Budget:</span><span>{{ Budget
                     }}</span>
                     </div>
-                    <div class="left-right"><el-input v-model="BudgetAdd"></el-input> <el-button @click="ClickAddBudget"
-                            type="primary" style="width: 100%">Add
+                    <div class="left-right"><el-input v-model="BudgetAdd" style="margin-right: 10px;"></el-input> <el-button
+                            @click="ClickAddBudget" type="primary" style="width: 100%">Add
                         </el-button></div>
-                    <div class="left-right"><el-input v-model="BudgetReduce"></el-input> <el-button
-                            @click="ClickReduceBudget" type="danger" style="width: 100%;">Remove</el-button></div>
+                    <div class="left-right"><el-input v-model="BudgetReduce" style="margin-right: 10px;"></el-input>
+                        <el-button @click="ClickReduceBudget" type="danger" style="width: 100%;">Remove</el-button>
+                    </div>
                 </el-card></el-col>
             <el-col :span="4"><el-card class="box-card">
                     <div>Privacy Using Percentage</div>
@@ -46,6 +47,7 @@
         <!-- chart -->
         <el-row :gutter="10">
             <el-col :span="12"><el-card class="box-card">
+                    <div>Requests, Transactions and Revenue</div>
                     <div style="width: 100%; height: 400px;" id="chart3">
                     </div>
                 </el-card></el-col>
@@ -54,13 +56,13 @@
         <el-row :gutter="20">
 
             <el-col :span="3" v-for="item in Stats">
-                    <div>
-                        <el-statistic :title="item.title" group-separator="," :style="randomRgb()">
-                            <template slot="formatter">
-                                {{ item.value }}
-                            </template>
-                        </el-statistic>
-                    </div>
+                <div>
+                    <el-statistic :title="item.title" group-separator="," :style="randomRgb()">
+                        <template slot="formatter">
+                            {{ item.value }}
+                        </template>
+                    </el-statistic>
+                </div>
             </el-col>
         </el-row>
     </section>
@@ -90,8 +92,8 @@ export default {
             ],
             ExistingCoordinationAlgorithm: [
                 'Boggart',
-                'Algo2',
-                'Algo3'
+                'Decimalism_Greedy',
+                'Decimalism_Random'
             ],
             AlgoCurrentPicking: 'Boggart',
             ExistingCommissionRate: ['0.01%', '0.1%', '1%'],
@@ -99,7 +101,7 @@ export default {
             IndicatorByTime: {
                 Request: [{ time: '10:50', value: 20 }, { time: '10:51', value: 40 }, { time: '10:52', value: 60 }],
                 Transaction: [{ time: '10:50', value: 10 }, { time: '10:51', value: 15 }, { time: '10:52', value: 20 }],
-                Revenue: [{ time: '10:50', value: 10 }, { time: '10:51', value: 0 }, { time: '10:52', value: 30 }]
+                Revenue: [{ time: '10:50', value: 10 }, { time: '10:51', value: 22 }, { time: '10:52', value: 30 }]
 
             },
             Budget: 0,
@@ -128,9 +130,9 @@ export default {
 
         },
         randomRgb(item) {
-            let R = Math.floor(Math.random() * 130 + 110);
-            let G = Math.floor(Math.random() * 130 + 110);
-            let B = Math.floor(Math.random() * 130 + 110);
+            let R = Math.floor(Math.random() * 200 + 50);
+            let G = Math.floor(Math.random() * 200 + 50);
+            let B = Math.floor(Math.random() * 200 + 50);
             // console.log(R, G, B)
             return { background: 'rgb(' + R + ',' + G + ',' + B + ', .5)', borderRadius: '5px' }
         },
@@ -175,34 +177,39 @@ export default {
                     formatter: '{a}:{c}  @ {b}'
                 },
                 xAxis: {
-                    data: dataArray[nameArray[0]].map(item => item[xaxis])
+                    data: dataArray[nameArray[0]].map(item => item[xaxis]),
+                    name: 'Time'
                 },
                 legend: {
                     orient: 'horizontal',
-                    x: 'right',
+                    y: 'bottom',
                     data: nameArray,
-                    fontSize: 30
+                    fontSize: 30,
+                    left: 250
                 },
-                yAxis: [{ name: 'value' }],
+                yAxis: [{ name: 'Amount', position: 'left' }, {
+                    name: 'Revenue', position: 'right'
+                }
+                ],
                 series: [
                     {
                         data: dataArray[nameArray[0]].map(item => item[yaxis]),
                         type: 'bar',
-                        stack: 'y',
+                        // stack: 'y',
                         name: nameArray[0],
                         // formatter: '{ d }'
                     },
                     {
                         data: dataArray[nameArray[1]].map(item => item[yaxis]),
                         type: 'bar',
-                        stack: 'y',
+                        // stack: 'y',
                         name: nameArray[1]
 
                     },
                     {
                         data: dataArray[nameArray[2]].map(item => item[yaxis]),
                         type: 'line',
-                        stack: 'x',
+                        // stack: 'x',
                         name: nameArray[2]
 
                     }

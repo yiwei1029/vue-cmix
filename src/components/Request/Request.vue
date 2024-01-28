@@ -66,14 +66,16 @@
                     <div>
                         <el-form :model="Form" style="display: flex; align-items: start;">
                             <el-form-item>
-                                <el-input placeholder="Please input c" v-model="Form.valueOfC"></el-input>
+                                <el-input style="width: 200px; margin-right: 10px;" placeholder="Please input c"
+                                    v-model="Form.valueOfC"></el-input>
                             </el-form-item>
-                            <el-button type="primary" @click="sendRequest">Send Request</el-button>
+                            <el-button style="width: 125px; font-size: 12px;" type="primary" @click="sendRequest">Send
+                                Request</el-button>
                         </el-form>
                     </div>
                     <div class="number-display" v-if="NumberDisplay">
-                        <div>#Input: {{ 1 }}</div>
-                        <div>#Output: {{ 1 }}</div>
+                        <div>#Input: {{ 5 }}</div>
+                        <div>#Output: {{ 13 }}</div>
                         <div>Fee: {{ 0.01 }}</div>
                     </div>
 

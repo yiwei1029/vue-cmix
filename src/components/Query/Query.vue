@@ -2,7 +2,7 @@
     <section class="Request">
 
         <el-row :gutter="10">
-            <el-col :span="9">
+            <el-col :span="10">
                 <el-card>
                     <el-select v-model="BlockCurrentPick" style="width: 100%" placeholder="Select a Transaction">
                         <el-option v-for="item in Blocks" :key="item" :label="item" :value="item">
@@ -12,8 +12,8 @@
             </el-col>
         </el-row>
         <!-- 左边 -->
-        <el-row :gutter="10">
-            <el-col :span="3" v-if="BlockCurrentPick">
+        <el-row :gutter="10" v-if="BlockCurrentPick">
+            <el-col :span="4">
                 <!-- input -->
 
                 <el-card>
@@ -22,7 +22,7 @@
                         <el-col :span="15">
                             <!-- <div>{{ input.hash }}</div> -->
                             <el-popover placement="top-start" trigger="hover" :content="input.hash">
-                                <el-button slot="reference" type="text">{{ input.hash.substring(0, 40) + "..."
+                                <el-button slot="reference" type="text">{{ input.hash
                                 }}</el-button>
                             </el-popover>
                         </el-col>
@@ -88,11 +88,12 @@
                     </div>
                     <div class="left-right">
                         <span><i class="iconfont icon-jisuanqi"></i></span>
-                        <el-button style="padding:14px" @click="showProb = !showProb">Calculate The Probability</el-button>
+                        <el-button style="width: 218px; font-size: 12px;" @click="showProb = !showProb">Calculate The
+                            Probability</el-button>
                     </div>
 
                     <el-button v-if="showProb" style="width: 100%; background-color: #91cc75; color: balck;">Probability: {{
-                        0.8 }}</el-button>
+                        2 / 3 }}</el-button>
 
                 </el-card>
             </el-col>
@@ -109,41 +110,43 @@ export default {
             Prob: '',
             showProb: false,
             InputList: [
-                { hash: 'bc1quqfl65xqtkprhrygpdpeg4r7q20zyaq8xvxd3a', amount: 5 },
-                { hash: 'bc1qnalwjznls42dzvaw4m5u48td032692aslqwg9m', amount: 4 },
-                // { hash: 'bc1q5t94hycpjv2uegcchfr7q30tsuhq8wd2u90cg4', amount: 0.00349666 },
+                { hash: 'bc1quqfl65xqtkprhrygpdpeg4r7q20zyaq8xvxd3a', amount: 20 },
+                { hash: 'bc1qnalwjznls42dzvaw4m5u48td032692aslqwg9m', amount: 7 },
+                { hash: 'bc1q5t94hycpjv2uegcchfr7q30tsuhq8wd2u90cg4', amount: 3 },
                 // { hash: 'bc1qm4ztr7257hlqk3x670zr6maz36qnehczuetqrn', amount: 0.00428200 }
 
             ],
             OutputList: [
-                { hash: 'bc1quqfl65xqtkprhrygpdpeg4r7q20zyaq8xvxd3a', amount: 3 },
-                { hash: 'bc1qnalwjznls42dzvaw4m5u48td032692aslqwg9m', amount: 3 },
-                { hash: 'bc1q5t94hycpjv2uegcchfr7q30tsuhq8wd2u90cg4', amount: 2 },
-                { hash: 'bc1qm4ztr7257hlqk3x670zr6maz36qnehczuetqrn', amount: 1 }
+                { hash: 'bc1qnalwjznls42dzvaw4m5u48td032692aslqwg9m', amount: 7 },
+                { hash: 'bc1qm4ztr7257hlqk3x670zr6maz36qnehczuetqrn', amount: 7 },
+                { hash: 'bc1qwt9n2akyfesvgrh6ppct5wtvfq44xj48a8xq7c', amount: 3 },
+                { hash: 'bc1q7us0u59m2v2taggyydwaw2zfyl8psgjnzssk07', amount: 3 },
+                { hash: 'bc1q35td3t5yldmx6tcllf5jvq8y6yan3ymc9709pt', amount: 7 },
+                { hash: 'bc1qu2mfpjszwgalh8dfjjua3w6ssn8cl6dquq5ru7', amount: 3 }
+
+
 
             ], InputListToSelect: [
-                { hash: 'bc1quqfl65xqtkprhrygpdpeg4r7q20zyaq8xvxd3a', amount: 0.00571223 },
-                { hash: 'bc1qnalwjznls42dzvaw4m5u48td032692aslqwg9m', amount: 0.00127342 },
-                { hash: 'bc1q5t94hycpjv2uegcchfr7q30tsuhq8wd2u90cg4', amount: 0.00349666 },
-                { hash: 'bc1qm4ztr7257hlqk3x670zr6maz36qnehczuetqrn', amount: 0.00428200 }
+                { hash: 'bc1quqfl65xqtkprhrygpdpeg4r7q20zyaq8xvxd3a', amount: 20 },
+                { hash: 'bc1qnalwjznls42dzvaw4m5u48td032692aslqwg9m', amount: 7 },
+                { hash: 'bc1q5t94hycpjv2uegcchfr7q30tsuhq8wd2u90cg4', amount: 3 },
 
             ],
             OutputListToSelect: [
-                { hash: 'bc1quqfl65xqtkprhrygpdpeg4r7q20zyaq8xvxd3a', amount: 0.00571223 },
-                { hash: 'bc1qnalwjznls42dzvaw4m5u48td032692aslqwg9m', amount: 0.00127342 },
-                { hash: 'bc1q5t94hycpjv2uegcchfr7q30tsuhq8wd2u90cg4', amount: 0.00349666 },
-                { hash: 'bc1qm4ztr7257hlqk3x670zr6maz36qnehczuetqrn', amount: 0.00428200 }
+                { hash: 'bc1qnalwjznls42dzvaw4m5u48td032692aslqwg9m', amount: 7 },
+                { hash: 'bc1qm4ztr7257hlqk3x670zr6maz36qnehczuetqrn', amount: 7 },
+                { hash: 'bc1qwt9n2akyfesvgrh6ppct5wtvfq44xj48a8xq7c', amount: 3 },
+                { hash: 'bc1q7us0u59m2v2taggyydwaw2zfyl8psgjnzssk07', amount: 3 },
+                { hash: 'bc1q35td3t5yldmx6tcllf5jvq8y6yan3ymc9709pt', amount: 7 },
+                { hash: 'bc1qu2mfpjszwgalh8dfjjua3w6ssn8cl6dquq5ru7', amount: 3 }
 
             ],
             InputCurrentPick: '',
             OnputCurrentPick: '',
             OutputStats: [
-                { OutputAmount: 1, Stats: 6 },
-                { OutputAmount: 3, Stats: 2 },
-                { OutputAmount: 3, Stats: 2 },
-                { OutputAmount: 5, Stats: 1 },
-                { OutputAmount: 6, Stats: 5 },
-                { OutputAmount: 4, Stats: 3 },
+                { OutputAmount: 7, Stats: 3 },
+                { OutputAmount: 3, Stats: 3 },
+
             ],
             Blocks: [
                 '00000000000000000003b48f935bfaaa68a8e3444a266bb529136a863fe98bd4',
@@ -153,9 +156,20 @@ export default {
         }
     },
     components: {},
-    watch: {},
+    watch: {
+        BlockCurrentPick: {
+            handler(newVal, oldVal) {
+                setTimeout(() => {
+                    this.createChart('chart1', this.OutputStats)
+                }, 1);
+
+
+                // console.log({ oldVal, newVal })
+            }
+        }
+    },
     mounted() {
-        this.createChart('chart1', this.OutputStats)
+        // this.createChart('chart1', this.OutputStats)
     },
     methods: {
         createChart(divName, dataArr) {
@@ -171,17 +185,21 @@ export default {
                 legend: {
                     orient: 'vertical',
                     data: ["Output's Amounts"],
-                    right: 10,
+                    right: 90,
                     bottom: 10
                 },
                 xAxis: {
-                    data: dataArr.map(item => item.OutputAmount),
-                    // name: "Amounts"
+
+                    min: 0,
+                    max: 3,
                     // text: 'Amounts'
                 },
                 yAxis:
                 {
                     // name: '#Outputs',
+                    name: "Amounts",
+
+                    data: dataArr.map(item => item.OutputAmount),
 
                 }
                 ,
@@ -197,7 +215,8 @@ export default {
                         shadowColor: '#5470c6',
                         shadowBlur: 3,
                         color: '#91cc75',
-                        barWidth: '20%'
+                        // barWidth: '2%'
+                        // barMaxWidth:2
                     }
                 }]
             }
