@@ -48,7 +48,7 @@
         <el-row :gutter="10">
             <el-col :span="12"><el-card class="box-card">
                     <div>Requests, Transactions and Revenue</div>
-                    <div style="width: 100%; height: 400px;" id="chart3">
+                    <div style="width: 100%; height: 200px;" id="chart3">
                     </div>
                 </el-card></el-col>
         </el-row>
@@ -187,8 +187,8 @@ export default {
                     fontSize: 30,
                     left: 250
                 },
-                yAxis: [{ name: 'Amount', position: 'left' }, {
-                    name: 'Revenue', position: 'right'
+                yAxis: [{ name: 'Amount', position: 'left', interval: 20 }, {
+                    name: 'Revenue', position: 'right', interval: 20
                 }
                 ],
                 series: [

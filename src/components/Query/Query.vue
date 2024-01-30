@@ -185,7 +185,7 @@ export default {
                 legend: {
                     orient: 'vertical',
                     data: ["Output's Amounts"],
-                    right: 90,
+                    right: '37%',
                     bottom: 10
                 },
                 xAxis: {
